@@ -16,17 +16,16 @@
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
 
-function GameObject(obj) {
-    this.createdAt = obj.createdAt;
-    this.name = obj.name;
-    this.dimensions = obj.dimensions;
+class GameObject {
+    constructor(obj){
+        this.createdAt = obj.createdAt;
+        this.name = obj.name;
+        this.dimensions = obj.dimensions;
+    }
+    destroy() {
+        return `${this.name} was removed from the game.`;
+    }
 }
-
-GameObject.prototype.destroy = function () {
-    return `${this.name} was removed from the game.`;
-};
-
-
 
 /*
   === CharacterStats ===
@@ -35,17 +34,15 @@ GameObject.prototype.destroy = function () {
   * should inherit destroy() from GameObject's prototype
 */
 
-function CharacterStats(obj) {
-    GameObject.call(this, obj);
+class CharacterStats extends GameObject {
+    constructor(obj){
+    super(obj);
     this.healthPoints = obj.healthPoints;
+    }
+    takeDamage() {
+        return `${this.name} takes damage.`
+    }
 }
-
-CharacterStats.prototype = Object.create(GameObject.prototype);
-
-CharacterStats.prototype.takeDamage = function () {
-    return `${this.name} takes damage.`
-}
-
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -57,19 +54,17 @@ CharacterStats.prototype.takeDamage = function () {
   * should inherit takeDamage() from CharacterStats
 */
 
-function Humanoid(obj) {
-    CharacterStats.call(this, obj);
-    this.team = obj.team;
-    this.weapons = obj.weapons;
-    this.language = obj.language;
-};
-
-Humanoid.prototype = Object.create(CharacterStats.prototype);
-
-Humanoid.prototype.greet = function () {
-    return `${this.name} offers a greeting in ${this.language}.`
-};
-
+class Humanoid extends CharacterStats {
+    constructor(obj){
+        super(obj);
+        this.team = obj.team;
+        this.weapons = obj.weapons;
+        this.language = obj.language;
+    }
+    greet() {
+        return `${this.name} offers a greeting in ${this.language}.`
+    }
+}
 
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
@@ -79,32 +74,42 @@ Humanoid.prototype.greet = function () {
 
 // stretch constructors
 
-function Villian(obj) {
-    Humanoid.call(this, obj);
-    this.spell = obj.spell;
-};
-
-Villian.prototype = Object.create(Humanoid.prototype);
-
-Villian.prototype.attack = function (human) {
-    human.healthPoints -= 5;
-    if (human.healthPoints > 0) {
-        return `${this.name} attacks ${human.name} with ${this.spell}! \n ${human.takeDamage()} \n Health points: ${human.healthPoints}`;
-    } else if (human.healthPoints <= 0) {
-        return `${human.destroy()}`;
+class Villian extends Humanoid{
+    constructor(obj) {
+        super(obj);
+        this.spell = obj.spell;
     }
-};
+    attack = function (human) {
+        human.healthPoints -= 5;
+        if (human.healthPoints > 0) {
+            return `${this.name} attacks ${human.name} with ${this.spell}! \n ${human.takeDamage()} \n Health points: ${human.healthPoints}`;
+        } else if (human.healthPoints <= 0) {
+            return `${human.destroy()}`;
+        }
+}
+}
 
-function Hero(obj) {
-    Humanoid.call(this, obj);
-    this.spell = obj.spell;
-};
+// class GrandChild extends Child {
+//     constructor(grandChildAttributes) {
+//         super(grandChildAttributes);
+//         this.food = grandChildAttributes.food;
+//     }
+//     eat() {
+//         return `${this.newName} likes to eat ${this.food} after he plays with ${this.newToy}`;
+//     }
+// }
 
-Hero.prototype = Object.create(Humanoid.prototype);
+class Hero extends Humanoid{
+    constructor(obj){
+        super(obj);
+        this.spell = obj.spell;
+    }
+    protect(human) {
+        return `${this.name} protects with ${this.spell} and saves ${human.name}!`;
+    }
+}
 
-Hero.prototype.protect = function (human) {
-    return `${this.name} protects with ${this.spell} and saves ${human.name}!`;
-};
+
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
