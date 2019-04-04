@@ -79,7 +79,7 @@ class Villian extends Humanoid{
         super(obj);
         this.spell = obj.spell;
     }
-    attack = function (human) {
+    attack(human) {
         human.healthPoints -= 5;
         if (human.healthPoints > 0) {
             return `${this.name} attacks ${human.name} with ${this.spell}! \n ${human.takeDamage()} \n Health points: ${human.healthPoints}`;
@@ -88,16 +88,6 @@ class Villian extends Humanoid{
         }
 }
 }
-
-// class GrandChild extends Child {
-//     constructor(grandChildAttributes) {
-//         super(grandChildAttributes);
-//         this.food = grandChildAttributes.food;
-//     }
-//     eat() {
-//         return `${this.newName} likes to eat ${this.food} after he plays with ${this.newToy}`;
-//     }
-// }
 
 class Hero extends Humanoid{
     constructor(obj){
