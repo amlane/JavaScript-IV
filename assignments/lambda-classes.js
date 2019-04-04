@@ -27,17 +27,129 @@ class Instructor extends Person {
     }
 }
 
-// class GrandChild extends Child {
-//     constructor(grandChildAttributes) {
-//         super(grandChildAttributes);
-//         this.food = grandChildAttributes.food;
-//     }
-//     eat() {
-//         return `${this.newName} likes to eat ${this.food} after he plays with ${this.newToy}`;
-//     }
-// }
+class Student extends Person {
+    constructor(studentAttrs){
+        super(studentAttrs);
+        this.previousBackground = studentAttrs.previousBackground;
+        this.className = studentAttrs.className;
+        this.favSubjects = studentAttrs.favSubjects;
+        this.listsSubjects = studentAttrs.listsSubjects;
+    }
+    PRAssignment(subject){
+        return `${this.name} has submitted a PR for ${subject}.`
+    }
+    sprintChallenge(subject){
+        return `${this.name} has begun sprint challenge on ${subject}.`
+    }
+}
+
+class ProjectManager extends Instructor{
+    constructor(mentor){
+        super(mentor);
+        this.gradClassName = mentor.gradClassName;
+        this.favInstructor = mentor.favInstructor;
+        this.standUp = mentor.standUp;
+        }
+      debugsCode(student, subject){
+          return `${this.name} debugs ${student}'s code on ${subject}.`
+      }
+} 
+
+const ross = new Person({
+    name: 'Ross',
+    location: 'New York City',
+    age: 30,
+    gender: 'M',
+    favLanguage: 'HTML',
+    specialty: 'Front-end',
+    catchPhrase: `Hey`
+});
+
+const rachel = new Person({
+    name: 'Rachel',
+    location: 'NYC',
+    age: 32,
+    gender: 'F',
+    favLanguage: 'CSS',
+    specialty: 'Full Stack',
+    catchPhrase: `Closure! That's what I need!`
+});
+
+const chandler = new Person({
+    name: 'Chandler',
+    location: 'New York, NY',
+    age: 27,
+    gender: 'M',
+    favLanguage: 'React',
+    specialty: 'Front-end',
+    catchPhrase: `Could I BE coding any more?`
+});
+
+const blossom = new Instructor({
+    name: 'Blossom',
+    location: 'New England',
+    age: 37,
+    gender: 'F',
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
+    catchPhrase: `Rollin with the homies`
+});
+
+const bubbles = new Instructor({
+    name: 'Bubbles',
+    location: 'Lake of the Ozarks',
+    age: 32,
+    gender: 'F',
+    favLanguage: 'Python',
+    specialty: 'Network Security',
+    catchPhrase: `I'm the sweet one!`
+});
+
+const buttercup = new Instructor({
+    name: 'Buttercup',
+    location: 'Oklahoma',
+    age: 25,
+    gender: 'M',
+    favLanguage: 'Ruby',
+    specialty: 'Back-end',
+    catchPhrase: `None of this gray matters`
+});
+
+const april = new Student({
+    name: 'April',
+    location: 'Indiana',
+    age: 20,
+    gender: 'F',
+    favLanguage: 'Java',
+    specialty: 'Front-end',
+    catchPhrase: `Blood orphans`
+});
+
+const andy = new Student({
+    name: 'Andy',
+    location: 'Eagleton',
+    age: 25,
+    gender: 'M',
+    favLanguage: 'Python',
+    specialty: 'Network Security',
+    catchPhrase: `Woah that's awesome!`
+});
+
+const leslie = new Student({
+    name: 'Leslie',
+    location: 'Pawnee',
+    age: 35,
+    gender: 'F',
+    favLanguage: 'Ruby',
+    specialty: 'Back-end',
+    catchPhrase: `Let's go team!`
+});
 
 
-
-
+console.log(chandler.speak());
+console.log(blossom.speak());
+console.log(buttercup.demo("Javascript Fundamentals"));
+console.log(bubbles.grade(blossom, "Preprocessors"));
+console.log(april.PRAssignment("React"));
+console.log(andy.sprintChallenge("Responsive Design"));
 
