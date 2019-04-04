@@ -25,21 +25,30 @@ class Instructor extends Person {
     grade(student, subject){
         return `${student.name} receives a perfect score on ${subject}!`
     }
+    theWheelOfFortune(student){
+        student.grade += Math.ceil(Math.random() * 11);
+        return `${student.name} has ${student.grade}%`
+    }
+    
 }
 
 class Student extends Person {
-    constructor(student){
-        super(student);
-        this.previousBackground = student.previousBackground;
-        this.className = student.className;
-        this.favSubjects = student.favSubjects;
-        this.listsSubjects = student.listsSubjects;
+    constructor(studentAtts){
+        super(studentAtts);
+        this.previousBackground = studentAtts.previousBackground;
+        this.className = studentAtts.className;
+        this.favSubjects = studentAtts.favSubjects;
+        this.listsSubjects = studentAtts.listsSubjects;
+        this.grade = studentAtts.grade;
     }
     PRAssignment(subject){
         return `${this.name} has submitted a PR for ${subject}.`
     }
     sprintChallenge(subject){
         return `${this.name} has begun sprint challenge on ${subject}.`
+    }
+    tellGrade() {
+        return `${this.name} has ${this.grade}%`
     }
 }
 
@@ -122,7 +131,8 @@ const april = new Student({
     gender: 'F',
     favLanguage: 'Java',
     specialty: 'Front-end',
-    catchPhrase: `Blood orphans`
+    catchPhrase: `Blood orphans`,
+    grade: 40
 });
 
 const andy = new Student({
@@ -132,7 +142,8 @@ const andy = new Student({
     gender: 'M',
     favLanguage: 'Python',
     specialty: 'Network Security',
-    catchPhrase: `Woah that's awesome!`
+    catchPhrase: `Woah that's awesome!`,
+    grade: 65
 });
 
 const leslie = new Student({
@@ -142,7 +153,8 @@ const leslie = new Student({
     gender: 'F',
     favLanguage: 'Ruby',
     specialty: 'Back-end',
-    catchPhrase: `Let's go team!`
+    catchPhrase: `Let's go team!`,
+    grade: 55
 });
 
 const alvin = new ProjectManager({
@@ -183,4 +195,8 @@ console.log(bubbles.grade(blossom, "Preprocessors"));
 console.log(april.PRAssignment("React"));
 console.log(andy.sprintChallenge("Responsive Design"));
 console.log(theodore.debugsCode(andy, "Semantic HTML"));
+console.log(andy.tellGrade());
+console.log(leslie.tellGrade());
+console.log(blossom.theWheelOfFortune(andy));
+console.log(alvin.theWheelOfFortune(leslie));
 
