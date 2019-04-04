@@ -28,12 +28,12 @@ class Instructor extends Person {
 }
 
 class Student extends Person {
-    constructor(studentAttrs){
-        super(studentAttrs);
-        this.previousBackground = studentAttrs.previousBackground;
-        this.className = studentAttrs.className;
-        this.favSubjects = studentAttrs.favSubjects;
-        this.listsSubjects = studentAttrs.listsSubjects;
+    constructor(student){
+        super(student);
+        this.previousBackground = student.previousBackground;
+        this.className = student.className;
+        this.favSubjects = student.favSubjects;
+        this.listsSubjects = student.listsSubjects;
     }
     PRAssignment(subject){
         return `${this.name} has submitted a PR for ${subject}.`
@@ -51,7 +51,7 @@ class ProjectManager extends Instructor{
         this.standUp = mentor.standUp;
         }
       debugsCode(student, subject){
-          return `${this.name} debugs ${student}'s code on ${subject}.`
+          return `${this.name} debugs ${student.name}'s code on ${subject}.`
       }
 } 
 
@@ -145,6 +145,36 @@ const leslie = new Student({
     catchPhrase: `Let's go team!`
 });
 
+const alvin = new ProjectManager({
+    name: 'Alvin',
+    location: 'Kansas City, MO',
+    age: 24,
+    gender: 'M',
+    favLanguage: 'Django',
+    specialty: 'Front-end',
+    catchPhrase: `Alvin!!`
+});
+
+const simon = new ProjectManager({
+    name: 'Simon',
+    location: 'Denver, CO',
+    age: 22,
+    gender: 'M',
+    favLanguage: 'Markdown',
+    specialty: 'Network Security',
+    catchPhrase: `I'm Simon!`
+});
+
+const theodore = new ProjectManager({
+    name: 'Theodore',
+    location: 'Chicago, Il',
+    age: 45,
+    gender: 'M',
+    favLanguage: 'C#',
+    specialty: 'Back-end',
+    catchPhrase: `Let's read books!`
+});
+
 
 console.log(chandler.speak());
 console.log(blossom.speak());
@@ -152,4 +182,5 @@ console.log(buttercup.demo("Javascript Fundamentals"));
 console.log(bubbles.grade(blossom, "Preprocessors"));
 console.log(april.PRAssignment("React"));
 console.log(andy.sprintChallenge("Responsive Design"));
+console.log(theodore.debugsCode(andy, "Semantic HTML"));
 
