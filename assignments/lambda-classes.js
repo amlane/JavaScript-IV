@@ -50,6 +50,13 @@ class Student extends Person {
     tellGrade() {
         return `${this.name} has ${this.grade}%`
     }
+    graduate(){
+        if (this.grade > 69) {
+        return `${this.name} is ready to graduate!`
+        } else {
+            return `${this.name} has a ${this.grade}%. The requirement to graduate is 70%. Keep studying!`
+        }
+    }
 }
 
 class ProjectManager extends Instructor{
@@ -199,4 +206,6 @@ console.log(andy.tellGrade());
 console.log(leslie.tellGrade());
 console.log(blossom.theWheelOfFortune(andy));
 console.log(alvin.theWheelOfFortune(leslie));
-
+console.log(buttercup.theWheelOfFortune(andy));
+console.log(andy.graduate());
+console.log(leslie.graduate());
